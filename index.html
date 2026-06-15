@@ -6,9 +6,6 @@
 <title>DS Plomberie Électricité - Excellence Technique</title>
 <meta name="description" content="Solutions de plomberie et d'électricité de haute précision pour les propriétés exigeantes. Ingénierie précise, exécution de luxe.">
 
-<!-- Netlify Identity Widget (connexion au CMS) -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
 <!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Google Fonts -->
@@ -127,7 +124,7 @@
   <div class="absolute inset-0 z-0">
     <div class="absolute inset-0 bg-inverse-surface/80 mix-blend-multiply z-10"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background z-10"></div>
-    <img alt="Technicien qualifié travaillant sur un tableau électrique complexe dans un environnement industriel." class="w-full h-full object-cover object-center grayscale opacity-60 scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKhqq1FfqXychKj2NpJyfTAxPTaW5xYry06L8y1R1F_N0cbJ2042kGZSwFpiubcIOxII1bxf9HrCpGb1tfCNcj5_rDp5bYxwwDryNAG6OOgLOETYXOcMQ9F7lZVc4uiOD9rrMgTA77n_pmOsfYtMV38GrngHLqhbWx4TW2CzGvymvHG6O2RbK7HxOu4yibe-xQ-AmDGcV_tx5LpT5RUqRoUqV26Sqa-CnHgRmLNPFfvxH70onG2shX2kpFAlLa6LTHAYtOD5fqDQo">
+    <img id="hero-image" alt="Technicien qualifié travaillant sur un tableau électrique complexe dans un environnement industriel." class="w-full h-full object-cover object-center grayscale opacity-60 scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKhqq1FfqXychKj2NpJyfTAxPTaW5xYry06L8y1R1F_N0cbJ2042kGZSwFpiubcIOxII1bxf9HrCpGb1tfCNcj5_rDp5bYxwwDryNAG6OOgLOETYXOcMQ9F7lZVc4uiOD9rrMgTA77n_pmOsfYtMV38GrngHLqhbWx4TW2CzGvymvHG6O2RbK7HxOu4yibe-xQ-AmDGcV_tx5LpT5RUqRoUqV26Sqa-CnHgRmLNPFfvxH70onG2shX2kpFAlLa6LTHAYtOD5fqDQo">
   </div>
   <div class="container mx-auto px-gutter relative z-20 max-w-container-max flex flex-col w-full h-full justify-between gap-16">
     <div class="flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-10">
@@ -160,8 +157,8 @@
   <div class="container mx-auto px-gutter max-w-container-max relative z-10">
     <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-outline-variant pb-8" data-reveal>
       <div class="max-w-xl">
-        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-4">Nos Expertises</h2>
-        <p class="font-body-lg text-body-lg text-secondary">Une maîtrise technique totale pour des infrastructures robustes et pérennes. Nous intervenons avec la rigueur de l'ingénierie moderne.</p>
+        <h2 id="expertise-title" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-4">Nos Expertises</h2>
+        <p id="expertise-intro" class="font-body-lg text-body-lg text-secondary">Une maîtrise technique totale pour des infrastructures robustes et pérennes. Nous intervenons avec la rigueur de l'ingénierie moderne.</p>
       </div>
       <a class="font-label-caps text-label-caps text-primary hover:text-surface-tint flex items-center gap-2 uppercase tracking-widest group" href="#contact">
         Voir toutes les expertises
@@ -214,44 +211,44 @@
   <div class="container mx-auto px-gutter max-w-container-max">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div data-reveal>
-        <span class="font-label-caps text-label-caps text-primary-fixed tracking-[0.2em] uppercase mb-4 block">Fondations Solides</span>
-        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-secondary uppercase tracking-tight mb-6">Pourquoi Nous Choisir ?</h2>
-        <p class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-lg">Nous ne faisons pas que réparer ou installer; nous concevons des systèmes durables. Notre approche est méthodique, documentée et exécutée par des techniciens passionnés par la perfection mécanique et électrique.</p>
-        <div class="grid grid-cols-2 gap-x-8 gap-y-10">
-          <div class="border-t border-outline/30 pt-6" data-reveal>
-            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">verified</span></div>
-            <h4 class="font-headline-md text-2xl mb-1">Artisans Certifiés</h4>
-            <p class="font-body-md text-surface-variant text-sm">Qualifications Qualibat &amp; RGE. Excellence garantie.</p>
+        <span id="reliability-eyebrow" class="font-label-caps text-label-caps text-primary-fixed tracking-[0.2em] uppercase mb-4 block">Fondations Solides</span>
+        <h2 id="reliability-title" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-secondary uppercase tracking-tight mb-6">Pourquoi Nous Choisir ?</h2>
+        <p id="reliability-intro" class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-lg">Nous ne faisons pas que réparer ou installer; nous concevons des systèmes durables. Notre approche est méthodique, documentée et exécutée par des techniciens passionnés par la perfection mécanique et électrique.</p>
+        <div id="reliability-stats" class="grid grid-cols-2 gap-x-8 gap-y-10">
+          <div class="reliability-stat border-t border-outline/30 pt-6" data-reveal>
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon" data-stat-icon>verified</span></div>
+            <h4 class="font-headline-md text-2xl mb-1" data-stat-title>Artisans Certifiés</h4>
+            <p class="font-body-md text-surface-variant text-sm" data-stat-desc>Qualifications Qualibat &amp; RGE. Excellence garantie.</p>
           </div>
-          <div class="border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:90ms">
-            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">history</span></div>
-            <h4 class="font-headline-md text-2xl mb-1">15+ Ans</h4>
-            <p class="font-body-md text-surface-variant text-sm">D'expérience terrain sur des projets complexes.</p>
+          <div class="reliability-stat border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:90ms">
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon" data-stat-icon>history</span></div>
+            <h4 class="font-headline-md text-2xl mb-1" data-stat-title>15+ Ans</h4>
+            <p class="font-body-md text-surface-variant text-sm" data-stat-desc>D'expérience terrain sur des projets complexes.</p>
           </div>
-          <div class="border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:180ms">
-            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">precision_manufacturing</span></div>
-            <h4 class="font-headline-md text-2xl mb-1">Matériel Premium</h4>
-            <p class="font-body-md text-surface-variant text-sm">Utilisation exclusive de composants industriels.</p>
+          <div class="reliability-stat border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:180ms">
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon" data-stat-icon>precision_manufacturing</span></div>
+            <h4 class="font-headline-md text-2xl mb-1" data-stat-title>Matériel Premium</h4>
+            <p class="font-body-md text-surface-variant text-sm" data-stat-desc>Utilisation exclusive de composants industriels.</p>
           </div>
-          <div class="border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:270ms">
-            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">support_agent</span></div>
-            <h4 class="font-headline-md text-2xl mb-1">Suivi Dédié</h4>
-            <p class="font-body-md text-surface-variant text-sm">Documentation technique et maintenance proactive.</p>
+          <div class="reliability-stat border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:270ms">
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon" data-stat-icon>support_agent</span></div>
+            <h4 class="font-headline-md text-2xl mb-1" data-stat-title>Suivi Dédié</h4>
+            <p class="font-body-md text-surface-variant text-sm" data-stat-desc>Documentation technique et maintenance proactive.</p>
           </div>
         </div>
       </div>
       <div class="relative h-[600px]" data-reveal style="--reveal-delay:120ms">
-        <img alt="Gros plan d'un tableau électrique moderne et organisé avec un câblage précis." class="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn_SqA5gT7p9Hjn0V7_Uf3IfBxN8YLZ36xntHTJjfpTQpvbJ0CBh_uwp2pe3oW4ZD2DH0q1AX6S-LuxTuHmaOWf1EgAxgL4X8moZazp1Va-vY1ICtxFLT9AmPE2-JlI5yrKNLpo4lhvCYd4o6bZBEIgCXQb6Q-1GJzAPKpXXxRjKa-82pDD4cM-APijCFF4I9rLKOqLec8DqiUAwcP0wHiNkvkXEzLKo8JRH3km4iGvxvVe8Isw5wsvvpV4Ea9iuX_wyoWqzggZqY">
+        <img id="reliability-image" alt="Gros plan d'un tableau électrique moderne et organisé avec un câblage précis." class="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn_SqA5gT7p9Hjn0V7_Uf3IfBxN8YLZ36xntHTJjfpTQpvbJ0CBh_uwp2pe3oW4ZD2DH0q1AX6S-LuxTuHmaOWf1EgAxgL4X8moZazp1Va-vY1ICtxFLT9AmPE2-JlI5yrKNLpo4lhvCYd4o6bZBEIgCXQb6Q-1GJzAPKpXXxRjKa-82pDD4cM-APijCFF4I9rLKOqLec8DqiUAwcP0wHiNkvkXEzLKo8JRH3km4iGvxvVe8Isw5wsvvpV4Ea9iuX_wyoWqzggZqY">
         <div class="absolute inset-0 border border-primary-fixed/30 rounded-lg translate-x-4 translate-y-4 -z-10"></div>
         <div class="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded shadow-2xl max-w-xs border-l-4 border-primary">
           <div class="flex items-center gap-4 mb-3">
             <div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center text-primary"><span class="material-symbols-outlined fill-icon">architecture</span></div>
             <div>
-              <h5 class="font-headline-md text-lg text-on-surface">Précision Absolue</h5>
-              <p class="font-label-caps text-label-caps text-secondary uppercase">Tolérance Zéro</p>
+              <h5 id="reliability-overlay-title" class="font-headline-md text-lg text-on-surface">Précision Absolue</h5>
+              <p id="reliability-overlay-subtitle" class="font-label-caps text-label-caps text-secondary uppercase">Tolérance Zéro</p>
             </div>
           </div>
-          <p class="font-body-md text-on-surface-variant text-sm">Chaque raccord, chaque câble est positionné selon un plan strict. L'esthétique de l'ingénierie.</p>
+          <p id="reliability-overlay-text" class="font-body-md text-on-surface-variant text-sm">Chaque raccord, chaque câble est positionné selon un plan strict. L'esthétique de l'ingénierie.</p>
         </div>
       </div>
     </div>
@@ -268,9 +265,9 @@
       <!-- Contact Info -->
       <div class="flex flex-col justify-between">
         <div>
-          <span class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase mb-4 block">Démarrer un projet</span>
-          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-6">Parlons de votre<br>installation.</h2>
-          <p class="font-body-lg text-body-lg text-secondary mb-10 max-w-md">Que ce soit pour une rénovation complète ou une nouvelle construction, nos ingénieurs sont prêts à étudier votre cahier des charges.</p>
+          <span id="contact-eyebrow" class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase mb-4 block">Démarrer un projet</span>
+          <h2 id="contact-title" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-6">Parlons de votre<br>installation.</h2>
+          <p id="contact-intro" class="font-body-lg text-body-lg text-secondary mb-10 max-w-md">Que ce soit pour une rénovation complète ou une nouvelle construction, nos ingénieurs sont prêts à étudier votre cahier des charges.</p>
         </div>
         <div class="space-y-8 mt-8">
           <div class="flex items-start gap-4">
@@ -442,53 +439,78 @@
   // Les fichiers JSON sont modifiés par le client via /admin.
   // Si le fetch échoue (ex: ouverture en file://), le contenu HTML par défaut reste affiché.
   (function () {
-    const setText = (id, value) => { const el = document.getElementById(id); if (el && value != null) el.textContent = value; };
+    const setText = (id, value) => { const el = document.getElementById(id); if (el && value != null && value !== '') el.textContent = value; };
+    const setHtml = (id, value) => { const el = document.getElementById(id); if (el && value != null && value !== '') el.innerHTML = value.replace(/\n/g, '<br>'); };
+    const setImg  = (id, value) => { const el = document.getElementById(id); if (el && value != null && value !== '') el.src = value; };
+    const getJson = (path) => fetch(path).then(r => r.ok ? r.json() : null).catch(() => null);
 
-    fetch('content/hero.json').then(r => r.ok ? r.json() : null).then(d => {
+    // HERO
+    getJson('content/hero.json').then(d => {
       if (!d) return;
-      setText('hero-eyebrow', null); // géré via innerHTML ci-dessous pour conserver le <br>
-      const eyebrow = document.getElementById('hero-eyebrow');
-      if (eyebrow && d.eyebrow) eyebrow.innerHTML = d.eyebrow.replace(/\n/g, '<br>');
+      setHtml('hero-eyebrow', d.eyebrow);
       setText('hero-intro', d.intro);
       setText('hero-title-1', d.title_line1);
       setText('hero-title-2', d.title_line2);
-    }).catch(() => {});
+      setImg('hero-image', d.image);
+    });
 
-    fetch('content/expertises.json').then(r => r.ok ? r.json() : null).then(d => {
-      if (!d || !Array.isArray(d.items)) return;
-      const cards = document.querySelectorAll('#expertise-grid .expertise-card');
-      d.items.forEach((item, i) => {
-        const card = cards[i];
-        if (!card) return;
-        const icon = card.querySelector('[data-card-icon]');
-        const title = card.querySelector('[data-card-title]');
-        const desc = card.querySelector('[data-card-desc]');
-        if (icon && item.icon) icon.textContent = item.icon;
-        if (title && item.title) title.textContent = item.title;
-        if (desc && item.description) desc.textContent = item.description;
-      });
-    }).catch(() => {});
-
-    fetch('content/contact.json').then(r => r.ok ? r.json() : null).then(d => {
+    // EXPERTISES (en-tête + 4 cartes)
+    getJson('content/expertises.json').then(d => {
       if (!d) return;
-      const addr = document.getElementById('contact-address');
-      if (addr && d.address) addr.innerHTML = d.address.replace(/\n/g, '<br>');
+      setText('expertise-title', d.section_title);
+      setText('expertise-intro', d.section_intro);
+      if (Array.isArray(d.items)) {
+        const cards = document.querySelectorAll('#expertise-grid .expertise-card');
+        d.items.forEach((item, i) => {
+          const card = cards[i];
+          if (!card) return;
+          const icon = card.querySelector('[data-card-icon]');
+          const title = card.querySelector('[data-card-title]');
+          const desc = card.querySelector('[data-card-desc]');
+          if (icon && item.icon) icon.textContent = item.icon;
+          if (title && item.title) title.textContent = item.title;
+          if (desc && item.description) desc.textContent = item.description;
+        });
+      }
+    });
+
+    // POURQUOI NOUS (en-tête + image + 4 stats + carte superposée)
+    getJson('content/reliability.json').then(d => {
+      if (!d) return;
+      setText('reliability-eyebrow', d.eyebrow);
+      setText('reliability-title', d.title);
+      setText('reliability-intro', d.intro);
+      setImg('reliability-image', d.image);
+      setText('reliability-overlay-title', d.overlay_title);
+      setText('reliability-overlay-subtitle', d.overlay_subtitle);
+      setText('reliability-overlay-text', d.overlay_text);
+      if (Array.isArray(d.stats)) {
+        const stats = document.querySelectorAll('#reliability-stats .reliability-stat');
+        d.stats.forEach((item, i) => {
+          const s = stats[i];
+          if (!s) return;
+          const icon = s.querySelector('[data-stat-icon]');
+          const title = s.querySelector('[data-stat-title]');
+          const desc = s.querySelector('[data-stat-desc]');
+          if (icon && item.icon) icon.textContent = item.icon;
+          if (title && item.title) title.textContent = item.title;
+          if (desc && item.description) desc.textContent = item.description;
+        });
+      }
+    });
+
+    // CONTACT (en-tête + coordonnées)
+    getJson('content/contact.json').then(d => {
+      if (!d) return;
+      setText('contact-eyebrow', d.eyebrow);
+      setHtml('contact-title', d.title);
+      setText('contact-intro', d.intro);
+      setHtml('contact-address', d.address);
       const phone = document.getElementById('contact-phone');
       if (phone && d.phone) { phone.textContent = d.phone; phone.href = 'tel:' + d.phone.replace(/[^+\d]/g, ''); }
       const email = document.getElementById('contact-email');
       if (email && d.email) { email.textContent = d.email; email.href = 'mailto:' + d.email; }
-    }).catch(() => {});
-  })();
-
-  // --- Netlify Identity : redirection vers /admin après connexion ---
-  (function () {
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', (user) => {
-        if (!user) {
-          window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-        }
-      });
-    }
+    });
   })();
 </script>
 </body>

@@ -1,6 +1,6 @@
 # =====================================================================
 #  Decap CMS — Configuration
-#  Le client édite le contenu du site via /admin/ (login Netlify Identity)
+#  Le client édite le contenu du site via /admin/ (login GitHub OAuth)
 # =====================================================================
 
 backend:
@@ -26,25 +26,28 @@ collections:
   # -------------------------------------------------------------------
   - name: "contenu"
     label: "Contenu du site"
-    description: "Modifiez les textes et coordonnées du site."
+    description: "Modifiez les textes, les images et les coordonnées du site."
     files:
       # ---------------- HERO ----------------
       - name: "hero"
-        label: "Section Hero (bannière)"
+        label: "1. Bannière (Hero)"
         file: "content/hero.json"
         format: json
         fields:
-          - { name: "title_line1", label: "Titre principal — ligne 1", widget: "string", default: "Plomberie" }
-          - { name: "title_line2", label: "Titre principal — ligne 2", widget: "string", default: "éléctricité" }
-          - { name: "eyebrow", label: "Sur-titre (en haut à gauche)", widget: "text", hint: "Retours à la ligne autorisés", default: "Ingénierie Précise.\nExécution de Luxe." }
-          - { name: "intro", label: "Sous-titre / texte d'introduction", widget: "text" }
+          - { name: "title_line1", label: "Grand titre — ligne 1", widget: "string", default: "Plomberie" }
+          - { name: "title_line2", label: "Grand titre — ligne 2", widget: "string", default: "éléctricité" }
+          - { name: "eyebrow", label: "Sur-titre (haut gauche)", widget: "text", hint: "Retours à la ligne autorisés", default: "Ingénierie Précise.\nExécution de Luxe." }
+          - { name: "intro", label: "Texte d'introduction (haut droite)", widget: "text" }
+          - { name: "image", label: "Image de fond", widget: "image", required: false, hint: "Photo de fond de la bannière" }
 
       # ---------------- EXPERTISES ----------------
       - name: "expertises"
-        label: "Section Expertises (4 cartes)"
+        label: "2. Expertises"
         file: "content/expertises.json"
         format: json
         fields:
+          - { name: "section_title", label: "Titre de la section", widget: "string", default: "Nos Expertises" }
+          - { name: "section_intro", label: "Texte sous le titre", widget: "text" }
           - name: "items"
             label: "Cartes de services"
             widget: "list"
@@ -55,7 +58,7 @@ collections:
               - name: "icon"
                 label: "Icône"
                 widget: "select"
-                hint: "Icône Material Symbols affichée sur la carte"
+                hint: "Icône affichée sur la carte"
                 options:
                   - { label: "Goutte d'eau (plomberie)", value: "water_drop" }
                   - { label: "Éclair (électricité)", value: "electric_bolt" }
@@ -68,12 +71,52 @@ collections:
               - { name: "title", label: "Titre de la carte", widget: "string" }
               - { name: "description", label: "Description", widget: "text" }
 
+      # ---------------- POURQUOI NOUS ----------------
+      - name: "reliability"
+        label: "3. Pourquoi nous choisir"
+        file: "content/reliability.json"
+        format: json
+        fields:
+          - { name: "eyebrow", label: "Sur-titre", widget: "string", default: "Fondations Solides" }
+          - { name: "title", label: "Titre de la section", widget: "string", default: "Pourquoi Nous Choisir ?" }
+          - { name: "intro", label: "Paragraphe d'introduction", widget: "text" }
+          - { name: "image", label: "Image de la section", widget: "image", required: false }
+          - name: "stats"
+            label: "Atouts (4 blocs)"
+            widget: "list"
+            min: 4
+            max: 4
+            summary: "{{fields.title}}"
+            fields:
+              - name: "icon"
+                label: "Icône"
+                widget: "select"
+                options:
+                  - { label: "Badge vérifié", value: "verified" }
+                  - { label: "Ancienneté / historique", value: "history" }
+                  - { label: "Fabrication de précision", value: "precision_manufacturing" }
+                  - { label: "Support / conseil", value: "support_agent" }
+                  - { label: "Médaille d'excellence", value: "workspace_premium" }
+                  - { label: "Bouclier / garantie", value: "shield" }
+                  - { label: "Ingénierie", value: "engineering" }
+                  - { label: "Poignée de main", value: "handshake" }
+                  - { label: "Économies", value: "savings" }
+                  - { label: "Écologie", value: "eco" }
+              - { name: "title", label: "Titre", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+          - { name: "overlay_title", label: "Encart — titre", widget: "string", default: "Précision Absolue" }
+          - { name: "overlay_subtitle", label: "Encart — sous-titre", widget: "string", default: "Tolérance Zéro" }
+          - { name: "overlay_text", label: "Encart — texte", widget: "text" }
+
       # ---------------- CONTACT ----------------
       - name: "contact"
-        label: "Section Contact (coordonnées)"
+        label: "4. Contact"
         file: "content/contact.json"
         format: json
         fields:
+          - { name: "eyebrow", label: "Sur-titre", widget: "string", default: "Démarrer un projet" }
+          - { name: "title", label: "Titre de la section", widget: "text", hint: "Retours à la ligne autorisés", default: "Parlons de votre\ninstallation." }
+          - { name: "intro", label: "Texte d'introduction", widget: "text" }
           - { name: "address", label: "Adresse physique", widget: "text", hint: "Retours à la ligne autorisés" }
           - { name: "phone", label: "Numéro de téléphone", widget: "string" }
           - { name: "email", label: "Adresse email", widget: "string" }

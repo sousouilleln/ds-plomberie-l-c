@@ -1,0 +1,15 @@
+{
+  "eyebrow": "Fondations Solides",
+  "title": "Pourquoi Nous Choisir ?",
+  "intro": "Nous ne faisons pas que réparer ou installer; nous concevons des systèmes durables. Notre approche est méthodique, documentée et exécutée par des techniciens passionnés par la perfection mécanique et électrique.",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBn_SqA5gT7p9Hjn0V7_Uf3IfBxN8YLZ36xntHTJjfpTQpvbJ0CBh_uwp2pe3oW4ZD2DH0q1AX6S-LuxTuHmaOWf1EgAxgL4X8moZazp1Va-vY1ICtxFLT9AmPE2-JlI5yrKNLpo4lhvCYd4o6bZBEIgCXQb6Q-1GJzAPKpXXxRjKa-82pDD4cM-APijCFF4I9rLKOqLec8DqiUAwcP0wHiNkvkXEzLKo8JRH3km4iGvxvVe8Isw5wsvvpV4Ea9iuX_wyoWqzggZqY",
+  "stats": [
+    { "icon": "verified", "title": "Artisans Certifiés", "description": "Qualifications Qualibat & RGE. Excellence garantie." },
+    { "icon": "history", "title": "15+ Ans", "description": "D'expérience terrain sur des projets complexes." },
+    { "icon": "precision_manufacturing", "title": "Matériel Premium", "description": "Utilisation exclusive de composants industriels." },
+    { "icon": "support_agent", "title": "Suivi Dédié", "description": "Documentation technique et maintenance proactive." }
+  ],
+  "overlay_title": "Précision Absolue",
+  "overlay_subtitle": "Tolérance Zéro",
+  "overlay_text": "Chaque raccord, chaque câble est positionné selon un plan strict. L'esthétique de l'ingénierie."
+}

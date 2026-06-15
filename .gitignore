@@ -1,0 +1,12 @@
+# Secrets — ne JAMAIS committer (ils vivent dans les variables d'env Netlify)
+.env
+.env.*
+*.local
+
+# Dépendances / build
+node_modules/
+.netlify/
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db

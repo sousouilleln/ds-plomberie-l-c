@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DS Plomberie Électricité - Excellence Technique</title>
+<meta name="description" content="Solutions de plomberie et d'électricité de haute précision pour les propriétés exigeantes. Ingénierie précise, exécution de luxe.">
+
+<!-- Netlify Identity Widget (connexion au CMS) -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-container": "#fffbff", "tertiary": "#4c5e71", "outline": "#857467",
+          "surface-dim": "#d9dadb", "secondary-container": "#e2e2e5", "primary-fixed": "#ffdcc2",
+          "on-tertiary-fixed-variant": "#36485b", "tertiary-fixed-dim": "#b5c8df",
+          "on-primary-fixed-variant": "#6d3a00", "secondary-fixed": "#e2e2e5", "surface-tint": "#8c4f10",
+          "on-primary-fixed": "#2e1500", "on-surface": "#191c1d", "on-error-container": "#93000a",
+          "surface-container-low": "#f3f4f5", "surface-bright": "#f8f9fa",
+          "on-secondary-fixed-variant": "#454749", "background": "#f8f9fa", "tertiary-fixed": "#d1e4fb",
+          "outline-variant": "#d8c3b4", "primary-fixed-dim": "#ffb77b", "on-secondary": "#ffffff",
+          "surface": "#f8f9fa", "secondary-fixed-dim": "#c6c6c9", "surface-variant": "#e1e3e4",
+          "error-container": "#ffdad6", "on-tertiary": "#ffffff", "primary-container": "#a76526",
+          "tertiary-container": "#64768a", "inverse-on-surface": "#f0f1f2", "on-tertiary-container": "#fdfcff",
+          "on-secondary-fixed": "#1a1c1e", "on-primary": "#ffffff", "surface-container": "#edeeef",
+          "surface-container-lowest": "#ffffff", "inverse-surface": "#2e3132", "on-background": "#191c1d",
+          "inverse-primary": "#ffb77b", "surface-container-high": "#e7e8e9", "primary": "#894d0d",
+          "error": "#ba1a1a", "secondary": "#5d5e61", "surface-container-highest": "#e1e3e4",
+          "on-secondary-container": "#636467", "on-error": "#ffffff", "on-tertiary-fixed": "#091d2e",
+          "on-surface-variant": "#524439"
+        },
+        borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+        spacing: { gutter: "24px", "container-max": "1280px", "grid-columns": "12", "section-padding": "120px" },
+        fontFamily: {
+          "headline-md": ["Hanken Grotesk"], "body-lg": ["Hanken Grotesk"], "headline-lg": ["Anton"],
+          "headline-lg-mobile": ["Anton"], "display-xl": ["Anton"], "body-md": ["Hanken Grotesk"],
+          "label-caps": ["JetBrains Mono"]
+        },
+        fontSize: {
+          "headline-md": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+          "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+          "headline-lg": ["64px", { lineHeight: "64px", letterSpacing: "0.01em", fontWeight: "400" }],
+          "headline-lg-mobile": ["48px", { lineHeight: "48px", fontWeight: "400" }],
+          "display-xl": ["120px", { lineHeight: "110px", letterSpacing: "-0.02em", fontWeight: "400" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "600" }]
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+  .fill-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+  html { scroll-behavior: smooth; }
+  .ambient-shadow { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04); }
+
+  /* ---- Subtle reveal-on-scroll (smooth section reveals) ---- */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Respect users who prefer no motion */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .animate-bounce { animation: none !important; }
+  }
+
+  /* Buttons feel responsive */
+  .btn-press { transition: transform 0.15s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+  .btn-press:active { transform: scale(0.97); }
+</style>
+</head>
+
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary selection:text-on-primary">
+
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/90 backdrop-blur-md border-b border-outline-variant transition-all duration-300" id="main-nav">
+  <div class="flex items-center gap-8">
+    <a class="font-headline-lg text-headline-md text-primary tracking-tighter hover:opacity-80 transition-opacity" href="#">DS PLOMBERIE ÉLECTRICITÉ</a>
+    <div class="hidden md:flex gap-6 items-center">
+      <a class="text-secondary hover:text-primary transition-colors font-label-caps text-label-caps" href="#expertise">Expertise</a>
+      <a class="text-secondary hover:text-primary transition-colors font-label-caps text-label-caps" href="#reliability">Pourquoi nous</a>
+      <a class="text-secondary hover:text-primary transition-colors font-label-caps text-label-caps" href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <a class="hidden md:inline-block btn-press bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-full hover:bg-surface-tint uppercase tracking-widest shadow-sm" href="#contact">Demander un devis</a>
+    <button id="mobile-menu-btn" aria-label="Ouvrir le menu" class="md:hidden text-on-surface hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-surface/98 backdrop-blur-lg hidden flex-col items-center justify-center gap-8 md:hidden">
+  <a class="font-headline-md text-2xl text-on-surface hover:text-primary transition-colors mobile-link" href="#expertise">Expertise</a>
+  <a class="font-headline-md text-2xl text-on-surface hover:text-primary transition-colors mobile-link" href="#reliability">Pourquoi nous</a>
+  <a class="font-headline-md text-2xl text-on-surface hover:text-primary transition-colors mobile-link" href="#contact">Contact</a>
+  <a class="btn-press bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 rounded-full uppercase tracking-widest mobile-link" href="#contact">Demander un devis</a>
+</div>
+
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col items-center justify-center pt-32 pb-section-padding overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-inverse-surface/80 mix-blend-multiply z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background z-10"></div>
+    <img alt="Technicien qualifié travaillant sur un tableau électrique complexe dans un environnement industriel." class="w-full h-full object-cover object-center grayscale opacity-60 scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKhqq1FfqXychKj2NpJyfTAxPTaW5xYry06L8y1R1F_N0cbJ2042kGZSwFpiubcIOxII1bxf9HrCpGb1tfCNcj5_rDp5bYxwwDryNAG6OOgLOETYXOcMQ9F7lZVc4uiOD9rrMgTA77n_pmOsfYtMV38GrngHLqhbWx4TW2CzGvymvHG6O2RbK7HxOu4yibe-xQ-AmDGcV_tx5LpT5RUqRoUqV26Sqa-CnHgRmLNPFfvxH70onG2shX2kpFAlLa6LTHAYtOD5fqDQo">
+  </div>
+  <div class="container mx-auto px-gutter relative z-20 max-w-container-max flex flex-col w-full h-full justify-between gap-16">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-10">
+      <div class="md:w-1/3" data-reveal>
+        <span id="hero-eyebrow" class="font-label-caps text-label-caps text-on-primary tracking-[0.2em] uppercase leading-relaxed block">Ingénierie Précise.<br>Exécution de Luxe.</span>
+      </div>
+      <div class="md:w-1/3 md:text-right" data-reveal style="--reveal-delay:120ms">
+        <p id="hero-intro" class="font-body-md text-on-primary/90">Des solutions de plomberie et d'électricité de haute précision pour les propriétés exigeantes. Notre expertise technique garantit une fiabilité absolue et un design impeccable.</p>
+      </div>
+    </div>
+    <div class="flex flex-col items-center w-full mt-auto mb-10">
+      <h1 class="font-display-xl text-[60px] sm:text-[90px] md:text-[140px] lg:text-[180px] text-on-primary uppercase mb-12 leading-none tracking-[-0.04em] drop-shadow-2xl text-center w-full whitespace-nowrap" data-reveal>
+        <span id="hero-title-1">Plomberie</span><br><span id="hero-title-2">éléctricité</span>
+      </h1>
+      <div class="flex flex-col sm:flex-row gap-6 items-center justify-center w-full" data-reveal style="--reveal-delay:150ms">
+        <a class="btn-press bg-on-primary text-primary font-label-caps text-label-caps px-10 py-4 rounded-sm hover:bg-surface-dim uppercase tracking-[0.15em] shadow-lg shadow-primary/20 w-full sm:w-auto text-center" href="#contact">Demander un devis</a>
+        <a class="btn-press bg-transparent border border-on-primary/40 text-on-primary hover:border-on-primary font-label-caps text-label-caps px-10 py-4 rounded-sm uppercase tracking-[0.15em] w-full sm:w-auto text-center backdrop-blur-sm" href="#expertise">Découvrir nos services</a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+    <span class="font-label-caps text-[10px] text-on-primary uppercase tracking-widest">Scroll</span>
+    <span class="material-symbols-outlined text-on-primary">keyboard_arrow_down</span>
+  </div>
+</section>
+
+<!-- Services Section (Expertise) -->
+<section class="py-section-padding bg-surface relative" id="expertise">
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#4c5e71 1px, transparent 1px), linear-gradient(90deg, #4c5e71 1px, transparent 1px); background-size: 24px 24px;"></div>
+  <div class="container mx-auto px-gutter max-w-container-max relative z-10">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-outline-variant pb-8" data-reveal>
+      <div class="max-w-xl">
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-4">Nos Expertises</h2>
+        <p class="font-body-lg text-body-lg text-secondary">Une maîtrise technique totale pour des infrastructures robustes et pérennes. Nous intervenons avec la rigueur de l'ingénierie moderne.</p>
+      </div>
+      <a class="font-label-caps text-label-caps text-primary hover:text-surface-tint flex items-center gap-2 uppercase tracking-widest group" href="#contact">
+        Voir toutes les expertises
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+      </a>
+    </div>
+
+    <div id="expertise-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Service Card 1 -->
+      <div class="expertise-card group bg-surface-container-lowest p-8 border border-outline-variant/50 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 ambient-shadow rounded-lg relative overflow-hidden flex flex-col h-full" data-reveal>
+        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><span class="font-headline-lg text-6xl text-primary">01</span></div>
+        <div class="mb-8 p-4 bg-surface-container rounded-full w-16 h-16 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors"><span class="material-symbols-outlined text-3xl" data-card-icon>water_drop</span></div>
+        <h3 class="font-headline-md text-2xl text-on-surface mb-3 group-hover:text-primary transition-colors" data-card-title>Plomberie Générale</h3>
+        <p class="font-body-md text-secondary mb-6 flex-grow" data-card-desc>Réseaux d'alimentation, évacuation, et installations sanitaires haut de gamme. Conception et exécution au millimètre.</p>
+        <div class="mt-auto"><span class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider flex items-center gap-1 group-hover:text-primary transition-colors"><span class="w-4 h-[1px] bg-tertiary group-hover:bg-primary inline-block"></span> En savoir plus</span></div>
+      </div>
+      <!-- Service Card 2 -->
+      <div class="expertise-card group bg-surface-container-lowest p-8 border border-outline-variant/50 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 ambient-shadow rounded-lg relative overflow-hidden flex flex-col h-full" data-reveal style="--reveal-delay:90ms">
+        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><span class="font-headline-lg text-6xl text-primary">02</span></div>
+        <div class="mb-8 p-4 bg-surface-container rounded-full w-16 h-16 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors"><span class="material-symbols-outlined text-3xl" data-card-icon>electric_bolt</span></div>
+        <h3 class="font-headline-md text-2xl text-on-surface mb-3 group-hover:text-primary transition-colors" data-card-title>Installations Électriques</h3>
+        <p class="font-body-md text-secondary mb-6 flex-grow" data-card-desc>Tableaux électriques, domotique, éclairage architectural et mise en conformité stricte selon les normes NF C 15-100.</p>
+        <div class="mt-auto"><span class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider flex items-center gap-1 group-hover:text-primary transition-colors"><span class="w-4 h-[1px] bg-tertiary group-hover:bg-primary inline-block"></span> En savoir plus</span></div>
+      </div>
+      <!-- Service Card 3 -->
+      <div class="expertise-card group bg-surface-container-lowest p-8 border border-outline-variant/50 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 ambient-shadow rounded-lg relative overflow-hidden flex flex-col h-full" data-reveal style="--reveal-delay:180ms">
+        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><span class="font-headline-lg text-6xl text-primary">03</span></div>
+        <div class="mb-8 p-4 bg-surface-container rounded-full w-16 h-16 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors"><span class="material-symbols-outlined text-3xl" data-card-icon>mode_fan</span></div>
+        <h3 class="font-headline-md text-2xl text-on-surface mb-3 group-hover:text-primary transition-colors" data-card-title>Chauffage &amp; Climatisation</h3>
+        <p class="font-body-md text-secondary mb-6 flex-grow" data-card-desc>Solutions thermiques avancées. Pompes à chaleur, planchers chauffants et systèmes de ventilation haute performance.</p>
+        <div class="mt-auto"><span class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider flex items-center gap-1 group-hover:text-primary transition-colors"><span class="w-4 h-[1px] bg-tertiary group-hover:bg-primary inline-block"></span> En savoir plus</span></div>
+      </div>
+      <!-- Service Card 4 -->
+      <div class="expertise-card group bg-surface-container-lowest p-8 border border-outline-variant/50 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 ambient-shadow rounded-lg relative overflow-hidden flex flex-col h-full bg-gradient-to-br from-surface-container-lowest to-surface-container" data-reveal style="--reveal-delay:270ms">
+        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><span class="font-headline-lg text-6xl text-error">04</span></div>
+        <div class="mb-8 p-4 bg-error-container rounded-full w-16 h-16 flex items-center justify-center text-error group-hover:bg-error group-hover:text-on-error transition-colors"><span class="material-symbols-outlined text-3xl" data-card-icon>build</span></div>
+        <h3 class="font-headline-md text-2xl text-on-surface mb-3 group-hover:text-error transition-colors" data-card-title>Dépannage Urgent</h3>
+        <p class="font-body-md text-secondary mb-6 flex-grow" data-card-desc>Intervention rapide et diagnostic précis pour les urgences critiques. Remise en service avec garantie de fiabilité.</p>
+        <div class="mt-auto flex items-center justify-between">
+          <span class="font-label-caps text-[10px] bg-error/10 text-error px-2 py-1 rounded uppercase tracking-wider">Priorité Absolue</span>
+          <span class="font-label-caps text-label-caps text-error uppercase tracking-wider flex items-center gap-1">24/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Us (Reliability) -->
+<section class="py-section-padding bg-inverse-surface text-on-secondary" id="reliability">
+  <div class="container mx-auto px-gutter max-w-container-max">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div data-reveal>
+        <span class="font-label-caps text-label-caps text-primary-fixed tracking-[0.2em] uppercase mb-4 block">Fondations Solides</span>
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-secondary uppercase tracking-tight mb-6">Pourquoi Nous Choisir ?</h2>
+        <p class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-lg">Nous ne faisons pas que réparer ou installer; nous concevons des systèmes durables. Notre approche est méthodique, documentée et exécutée par des techniciens passionnés par la perfection mécanique et électrique.</p>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-10">
+          <div class="border-t border-outline/30 pt-6" data-reveal>
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">verified</span></div>
+            <h4 class="font-headline-md text-2xl mb-1">Artisans Certifiés</h4>
+            <p class="font-body-md text-surface-variant text-sm">Qualifications Qualibat &amp; RGE. Excellence garantie.</p>
+          </div>
+          <div class="border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:90ms">
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">history</span></div>
+            <h4 class="font-headline-md text-2xl mb-1">15+ Ans</h4>
+            <p class="font-body-md text-surface-variant text-sm">D'expérience terrain sur des projets complexes.</p>
+          </div>
+          <div class="border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:180ms">
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">precision_manufacturing</span></div>
+            <h4 class="font-headline-md text-2xl mb-1">Matériel Premium</h4>
+            <p class="font-body-md text-surface-variant text-sm">Utilisation exclusive de composants industriels.</p>
+          </div>
+          <div class="border-t border-outline/30 pt-6" data-reveal style="--reveal-delay:270ms">
+            <div class="text-primary-fixed mb-2"><span class="material-symbols-outlined text-3xl fill-icon">support_agent</span></div>
+            <h4 class="font-headline-md text-2xl mb-1">Suivi Dédié</h4>
+            <p class="font-body-md text-surface-variant text-sm">Documentation technique et maintenance proactive.</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative h-[600px]" data-reveal style="--reveal-delay:120ms">
+        <img alt="Gros plan d'un tableau électrique moderne et organisé avec un câblage précis." class="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn_SqA5gT7p9Hjn0V7_Uf3IfBxN8YLZ36xntHTJjfpTQpvbJ0CBh_uwp2pe3oW4ZD2DH0q1AX6S-LuxTuHmaOWf1EgAxgL4X8moZazp1Va-vY1ICtxFLT9AmPE2-JlI5yrKNLpo4lhvCYd4o6bZBEIgCXQb6Q-1GJzAPKpXXxRjKa-82pDD4cM-APijCFF4I9rLKOqLec8DqiUAwcP0wHiNkvkXEzLKo8JRH3km4iGvxvVe8Isw5wsvvpV4Ea9iuX_wyoWqzggZqY">
+        <div class="absolute inset-0 border border-primary-fixed/30 rounded-lg translate-x-4 translate-y-4 -z-10"></div>
+        <div class="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded shadow-2xl max-w-xs border-l-4 border-primary">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center text-primary"><span class="material-symbols-outlined fill-icon">architecture</span></div>
+            <div>
+              <h5 class="font-headline-md text-lg text-on-surface">Précision Absolue</h5>
+              <p class="font-label-caps text-label-caps text-secondary uppercase">Tolérance Zéro</p>
+            </div>
+          </div>
+          <p class="font-body-md text-on-surface-variant text-sm">Chaque raccord, chaque câble est positionné selon un plan strict. L'esthétique de l'ingénierie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-section-padding bg-background relative overflow-hidden" id="contact">
+  <div class="absolute top-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none flex justify-center mt-10">
+    <span class="font-display-xl text-[200px] text-tertiary whitespace-nowrap uppercase tracking-tighter">CONTACTEZ NOUS</span>
+  </div>
+  <div class="container mx-auto px-gutter max-w-container-max relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 bg-surface-container-lowest p-8 md:p-16 rounded-xl ambient-shadow border border-outline-variant/30" data-reveal>
+      <!-- Contact Info -->
+      <div class="flex flex-col justify-between">
+        <div>
+          <span class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase mb-4 block">Démarrer un projet</span>
+          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-6">Parlons de votre<br>installation.</h2>
+          <p class="font-body-lg text-body-lg text-secondary mb-10 max-w-md">Que ce soit pour une rénovation complète ou une nouvelle construction, nos ingénieurs sont prêts à étudier votre cahier des charges.</p>
+        </div>
+        <div class="space-y-8 mt-8">
+          <div class="flex items-start gap-4">
+            <div class="text-primary mt-1"><span class="material-symbols-outlined">location_on</span></div>
+            <div>
+              <h5 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider mb-1">Bureau d'Études</h5>
+              <p id="contact-address" class="font-body-md text-secondary">42 Avenue de l'Ingénierie<br>75000 Paris, France</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="text-primary mt-1"><span class="material-symbols-outlined">call</span></div>
+            <div>
+              <h5 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider mb-1">Assistance Technique</h5>
+              <p class="font-body-md text-secondary"><a id="contact-phone" href="tel:+33123456789" class="hover:text-primary transition-colors">+33 (0)1 23 45 67 89</a></p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="text-primary mt-1"><span class="material-symbols-outlined">mail</span></div>
+            <div>
+              <h5 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider mb-1">Email Principal</h5>
+              <p class="font-body-md text-secondary"><a id="contact-email" href="mailto:contact@ds-plomberie-elec.fr" class="hover:text-primary transition-colors">contact@ds-plomberie-elec.fr</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Netlify Form -->
+      <div class="bg-surface p-8 rounded border border-outline-variant/20">
+        <!-- Netlify Forms: name + data-netlify, honeypot anti-spam, redirect après envoi -->
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          action="/merci.html"
+          class="space-y-6"
+        >
+          <!-- Champ caché requis par Netlify pour associer la soumission au formulaire -->
+          <input type="hidden" name="form-name" value="contact">
+          <!-- Honeypot anti-spam (caché aux humains) -->
+          <p class="hidden">
+            <label>Ne remplissez pas ceci : <input name="bot-field"></label>
+          </p>
+
+          <div class="relative">
+            <input class="peer w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-md py-3 focus:ring-0 focus:border-primary transition-colors placeholder-transparent" id="name" name="name" placeholder="Nom complet" required type="text" autocomplete="name">
+            <label class="absolute left-0 top-3 text-secondary font-body-md transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-primary peer-focus:font-label-caps peer-focus:uppercase peer-focus:tracking-wider" for="name">Nom complet</label>
+          </div>
+
+          <div class="relative mt-8">
+            <input class="peer w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-md py-3 focus:ring-0 focus:border-primary transition-colors placeholder-transparent" id="email" name="email" placeholder="Adresse email" required type="email" autocomplete="email">
+            <label class="absolute left-0 top-3 text-secondary font-body-md transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-primary peer-focus:font-label-caps peer-focus:uppercase peer-focus:tracking-wider" for="email">Adresse email</label>
+          </div>
+
+          <div class="relative mt-8">
+            <input class="peer w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-md py-3 focus:ring-0 focus:border-primary transition-colors placeholder-transparent" id="phone" name="phone" placeholder="Téléphone" type="tel" autocomplete="tel">
+            <label class="absolute left-0 top-3 text-secondary font-body-md transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-primary peer-focus:font-label-caps peer-focus:uppercase peer-focus:tracking-wider" for="phone">Téléphone (optionnel)</label>
+          </div>
+
+          <div class="relative mt-8">
+            <select class="peer w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-md py-3 focus:ring-0 focus:border-primary transition-colors appearance-none" id="service" name="service" required>
+              <option disabled selected value="">Sélectionnez un service...</option>
+              <option value="Plomberie Générale">Plomberie Générale</option>
+              <option value="Installations Électriques">Installations Électriques</option>
+              <option value="Chauffage & Climatisation">Chauffage &amp; Climatisation</option>
+              <option value="Dépannage Urgent">Dépannage Urgent</option>
+              <option value="Autre projet">Autre projet</option>
+            </select>
+            <label class="absolute left-0 -top-3.5 text-xs text-primary font-label-caps uppercase tracking-wider transition-all" for="service">Type de Projet</label>
+            <div class="absolute right-0 top-4 pointer-events-none text-secondary"><span class="material-symbols-outlined text-sm">expand_more</span></div>
+          </div>
+
+          <div class="relative mt-8">
+            <textarea class="peer w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-md py-3 focus:ring-0 focus:border-primary transition-colors placeholder-transparent resize-none" id="message" name="message" placeholder="Détails du projet" required rows="4"></textarea>
+            <label class="absolute left-0 top-3 text-secondary font-body-md transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-primary peer-focus:font-label-caps peer-focus:uppercase peer-focus:tracking-wider" for="message">Détails du projet</label>
+          </div>
+
+          <button class="btn-press w-full bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 mt-6 rounded hover:bg-surface-tint uppercase tracking-widest hover:-translate-y-1 shadow-md shadow-primary/20 flex justify-center items-center gap-2" type="submit">
+            Envoyer la demande
+            <span class="material-symbols-outlined text-sm">send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full px-gutter py-section-padding flex flex-col items-center max-w-container-max mx-auto bg-inverse-surface border-t border-outline">
+  <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left">
+    <div>
+      <span class="font-headline-md text-2xl text-primary-fixed tracking-tight block mb-4">DS PLOMBERIE<br>ÉLECTRICITÉ</span>
+      <p class="font-body-md text-body-md text-secondary-fixed-dim max-w-xs mx-auto md:mx-0">L'excellence technique au service des installations résidentielles et commerciales de haut niveau.</p>
+    </div>
+    <div class="flex flex-col items-center md:items-start">
+      <span class="font-label-caps text-label-caps text-surface-dim uppercase tracking-widest mb-6">Navigation</span>
+      <nav class="flex flex-col gap-4">
+        <a class="font-body-md text-body-md text-secondary-fixed-dim hover:text-primary-fixed transition-colors hover:translate-x-1 duration-200" href="#expertise">Expertise</a>
+        <a class="font-body-md text-body-md text-secondary-fixed-dim hover:text-primary-fixed transition-colors hover:translate-x-1 duration-200" href="#reliability">Pourquoi nous</a>
+        <a class="font-body-md text-body-md text-secondary-fixed-dim hover:text-primary-fixed transition-colors hover:translate-x-1 duration-200" href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="flex flex-col items-center md:items-start">
+      <span class="font-label-caps text-label-caps text-surface-dim uppercase tracking-widest mb-6">Légal</span>
+      <nav class="flex flex-col gap-4">
+        <a class="font-body-md text-body-md text-secondary-fixed-dim hover:text-primary-fixed transition-colors hover:translate-x-1 duration-200" href="#">Mentions légales</a>
+        <a class="font-body-md text-body-md text-secondary-fixed-dim hover:text-primary-fixed transition-colors hover:translate-x-1 duration-200" href="#">Politique de confidentialité</a>
+      </nav>
+    </div>
+  </div>
+  <div class="w-full border-t border-outline/30 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="font-body-md text-body-md text-secondary-fixed-dim text-sm text-center">© <span id="year">2026</span> DS Plomberie Électricité. Tous droits réservés. Ingénierie Précise. Exécution de Luxe.</p>
+    <div class="flex gap-4 opacity-80 hover:opacity-100 transition-opacity text-secondary-fixed-dim">
+      <a class="hover:text-primary-fixed transition-colors" href="#" aria-label="Partager"><span class="material-symbols-outlined">share</span></a>
+    </div>
+  </div>
+  <span class="font-headline-lg text-headline-lg text-primary-fixed-dim opacity-10 uppercase tracking-widest block w-full text-center mt-8 select-none pointer-events-none">DS PLOMBERIE ÉLECTRICITÉ</span>
+</footer>
+
+<!-- =========================================================
+     Scripts
+     ========================================================= -->
+<script>
+  // Année dynamique
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // --- Menu mobile ---
+  (function () {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    const toggle = (open) => {
+      menu.classList.toggle('hidden', !open);
+      menu.classList.toggle('flex', open);
+      btn.querySelector('span').textContent = open ? 'close' : 'menu';
+    };
+    btn.addEventListener('click', () => toggle(menu.classList.contains('hidden')));
+    menu.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => toggle(false)));
+  })();
+
+  // --- Nav : ombre au scroll ---
+  (function () {
+    const nav = document.getElementById('main-nav');
+    const onScroll = () => nav.classList.toggle('shadow-lg', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // --- Reveal on scroll (smooth section reveals) ---
+  (function () {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // --- Hydratation du contenu éditable (Decap CMS) ---
+  // Les fichiers JSON sont modifiés par le client via /admin.
+  // Si le fetch échoue (ex: ouverture en file://), le contenu HTML par défaut reste affiché.
+  (function () {
+    const setText = (id, value) => { const el = document.getElementById(id); if (el && value != null) el.textContent = value; };
+
+    fetch('content/hero.json').then(r => r.ok ? r.json() : null).then(d => {
+      if (!d) return;
+      setText('hero-eyebrow', null); // géré via innerHTML ci-dessous pour conserver le <br>
+      const eyebrow = document.getElementById('hero-eyebrow');
+      if (eyebrow && d.eyebrow) eyebrow.innerHTML = d.eyebrow.replace(/\n/g, '<br>');
+      setText('hero-intro', d.intro);
+      setText('hero-title-1', d.title_line1);
+      setText('hero-title-2', d.title_line2);
+    }).catch(() => {});
+
+    fetch('content/expertises.json').then(r => r.ok ? r.json() : null).then(d => {
+      if (!d || !Array.isArray(d.items)) return;
+      const cards = document.querySelectorAll('#expertise-grid .expertise-card');
+      d.items.forEach((item, i) => {
+        const card = cards[i];
+        if (!card) return;
+        const icon = card.querySelector('[data-card-icon]');
+        const title = card.querySelector('[data-card-title]');
+        const desc = card.querySelector('[data-card-desc]');
+        if (icon && item.icon) icon.textContent = item.icon;
+        if (title && item.title) title.textContent = item.title;
+        if (desc && item.description) desc.textContent = item.description;
+      });
+    }).catch(() => {});
+
+    fetch('content/contact.json').then(r => r.ok ? r.json() : null).then(d => {
+      if (!d) return;
+      const addr = document.getElementById('contact-address');
+      if (addr && d.address) addr.innerHTML = d.address.replace(/\n/g, '<br>');
+      const phone = document.getElementById('contact-phone');
+      if (phone && d.phone) { phone.textContent = d.phone; phone.href = 'tel:' + d.phone.replace(/[^+\d]/g, ''); }
+      const email = document.getElementById('contact-email');
+      if (email && d.email) { email.textContent = d.email; email.href = 'mailto:' + d.email; }
+    }).catch(() => {});
+  })();
+
+  // --- Netlify Identity : redirection vers /admin après connexion ---
+  (function () {
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', (user) => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+# =====================================================================
+#  Decap CMS — Configuration
+#  Le client édite le contenu du site via /admin/ (login Netlify Identity)
+# =====================================================================
+
+backend:
+  name: git-gateway          # via Netlify Identity + Git Gateway
+  branch: main               # adaptez si votre branche de production diffère
+
+# Autorise l'aperçu/édition en local avec `npx decap-server` (proxy port 8081)
+local_backend: true
+
+# Langue de l'interface d'administration
+locale: fr
+
+# Dossier où Decap stocke les images téléversées par le client
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Message de commit lisible dans l'historique Git
+site_url: https://example.netlify.app
+display_url: https://example.netlify.app
+
+collections:
+  # -------------------------------------------------------------------
+  #  Contenu éditable du site (fichiers uniques = type "files")
+  # -------------------------------------------------------------------
+  - name: "contenu"
+    label: "Contenu du site"
+    description: "Modifiez les textes et coordonnées du site."
+    files:
+      # ---------------- HERO ----------------
+      - name: "hero"
+        label: "Section Hero (bannière)"
+        file: "content/hero.json"
+        format: json
+        fields:
+          - { name: "title_line1", label: "Titre principal — ligne 1", widget: "string", default: "Plomberie" }
+          - { name: "title_line2", label: "Titre principal — ligne 2", widget: "string", default: "éléctricité" }
+          - { name: "eyebrow", label: "Sur-titre (en haut à gauche)", widget: "text", hint: "Retours à la ligne autorisés", default: "Ingénierie Précise.\nExécution de Luxe." }
+          - { name: "intro", label: "Sous-titre / texte d'introduction", widget: "text" }
+
+      # ---------------- EXPERTISES ----------------
+      - name: "expertises"
+        label: "Section Expertises (4 cartes)"
+        file: "content/expertises.json"
+        format: json
+        fields:
+          - name: "items"
+            label: "Cartes de services"
+            widget: "list"
+            min: 4
+            max: 4
+            summary: "{{fields.title}}"
+            fields:
+              - name: "icon"
+                label: "Icône"
+                widget: "select"
+                hint: "Icône Material Symbols affichée sur la carte"
+                options:
+                  - { label: "Goutte d'eau (plomberie)", value: "water_drop" }
+                  - { label: "Éclair (électricité)", value: "electric_bolt" }
+                  - { label: "Ventilateur (CVC)", value: "mode_fan" }
+                  - { label: "Outil (dépannage)", value: "build" }
+                  - { label: "Robinet", value: "plumbing" }
+                  - { label: "Thermostat", value: "thermostat" }
+                  - { label: "Prise électrique", value: "power" }
+                  - { label: "Chauffage", value: "heat_pump" }
+              - { name: "title", label: "Titre de la carte", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+
+      # ---------------- CONTACT ----------------
+      - name: "contact"
+        label: "Section Contact (coordonnées)"
+        file: "content/contact.json"
+        format: json
+        fields:
+          - { name: "address", label: "Adresse physique", widget: "text", hint: "Retours à la ligne autorisés" }
+          - { name: "phone", label: "Numéro de téléphone", widget: "string" }
+          - { name: "email", label: "Adresse email", widget: "string" }

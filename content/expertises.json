@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "icon": "water_drop",
+      "title": "Plomberie Générale",
+      "description": "Réseaux d'alimentation, évacuation, et installations sanitaires haut de gamme. Conception et exécution au millimètre."
+    },
+    {
+      "icon": "electric_bolt",
+      "title": "Installations Électriques",
+      "description": "Tableaux électriques, domotique, éclairage architectural et mise en conformité stricte selon les normes NF C 15-100."
+    },
+    {
+      "icon": "mode_fan",
+      "title": "Chauffage & Climatisation",
+      "description": "Solutions thermiques avancées. Pompes à chaleur, planchers chauffants et systèmes de ventilation haute performance."
+    },
+    {
+      "icon": "build",
+      "title": "Dépannage Urgent",
+      "description": "Intervention rapide et diagnostic précis pour les urgences critiques. Remise en service avec garantie de fiabilité."
+    }
+  ]
+}

@@ -4,11 +4,11 @@
 # =====================================================================
 
 backend:
-  name: git-gateway          # via Netlify Identity + Git Gateway
-  branch: main               # adaptez si votre branche de production diffère
-
-# Autorise l'aperçu/édition en local avec `npx decap-server` (proxy port 8081)
-local_backend: true
+  name: github                              # auth GitHub directe (Identity/Git Gateway supprimés par Netlify)
+  repo: sousouilleln/ds-plomberie-l-c       # dépôt source
+  branch: main
+  base_url: https://dsplomberieelec.netlify.app   # origine des fonctions OAuth
+  auth_endpoint: .netlify/functions/auth          # fonction qui lance la connexion GitHub
 
 # Langue de l'interface d'administration
 locale: fr
@@ -17,9 +17,8 @@ locale: fr
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-# Message de commit lisible dans l'historique Git
-site_url: https://example.netlify.app
-display_url: https://example.netlify.app
+site_url: https://dsplomberieelec.netlify.app
+display_url: https://dsplomberieelec.netlify.app
 
 collections:
   # -------------------------------------------------------------------

@@ -1,6 +1,7 @@
 # Site statique : aucun build, on publie le dossier tel quel.
 [build]
   publish = "."
+  functions = "netlify/functions"   # fonctions OAuth pour la connexion au CMS
 
 # Sécurité de base
 [[headers]]

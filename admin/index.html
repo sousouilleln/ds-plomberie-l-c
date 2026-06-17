@@ -1,15 +1,693 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
-  <title>Administration — DS Plomberie Électricité</title>
-  <!-- Netlify Identity (authentification de l'éditeur) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <title>DS Plomberie — Administration</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f172a;
+      --surface:  #1e293b;
+      --surface2: #334155;
+      --border:   #334155;
+      --text:     #f1f5f9;
+      --muted:    #94a3b8;
+      --accent:   #3b82f6;
+      --accent-h: #2563eb;
+      --success:  #10b981;
+      --error:    #ef4444;
+      --radius:   8px;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; line-height: 1.5; }
+
+    /* ── ÉCRANS ── */
+    .screen { display: none; }
+    .screen.active { display: flex; }
+
+    /* ── LOGIN ── */
+    #login { min-height: 100vh; align-items: center; justify-content: center; background: var(--bg); }
+
+    .login-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 44px 40px;
+      width: 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .login-logo  { text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+    .login-sep   { width: 32px; height: 2px; background: var(--accent); margin: 0 auto; border-radius: 2px; }
+    .login-title { text-align: center; font-size: 22px; font-weight: 600; }
+
+    /* ── ÉDITEUR ── */
+    #editor { flex-direction: column; min-height: 100vh; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-brand { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+    .topbar-sep   { width: 1px; height: 20px; background: var(--border); flex-shrink: 0; }
+    .tab-nav      { display: flex; gap: 4px; flex: 1; }
+
+    .tab-btn {
+      background: none; border: none; color: var(--muted);
+      padding: 6px 14px; border-radius: 6px;
+      cursor: pointer; font-size: 13px; font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tab-btn:hover  { background: var(--surface2); color: var(--text); }
+    .tab-btn.active { background: var(--accent); color: #fff; }
+
+    .logout-btn {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      padding: 5px 12px; border-radius: 6px;
+      cursor: pointer; font-size: 12px; white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .logout-btn:hover { color: var(--error); border-color: var(--error); }
+
+    .main { max-width: 740px; margin: 0 auto; padding: 36px 24px 80px; }
+
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
+
+    h2 { font-size: 20px; font-weight: 600; margin-bottom: 28px; }
+
+    /* ── CHAMPS ── */
+    .field { margin-bottom: 20px; }
+
+    .field-label {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    textarea,
+    select {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+    textarea { resize: vertical; min-height: 76px; }
+    select option { background: #1e293b; }
+
+    .hint { font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field-row .field { margin-bottom: 0; }
+
+    /* ── CARTES (items répétés) ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .card-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .card .field { margin-bottom: 12px; }
+    .card .field:last-child { margin-bottom: 0; }
+
+    /* ── IMAGE ── */
+    .image-wrap { display: flex; gap: 16px; align-items: flex-start; }
+
+    .img-preview {
+      width: 96px; height: 72px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .upload-zone { display: flex; flex-direction: column; gap: 8px; }
+
+    .upload-btn {
+      display: inline-block;
+      background: var(--surface2); border: 1px dashed var(--border);
+      border-radius: 6px; padding: 8px 16px;
+      cursor: pointer; font-size: 13px; color: var(--muted);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .upload-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .upload-btn input[type=file] { display: none; }
+
+    .uploading { font-size: 12px; color: var(--accent); display: none; }
+
+    /* ── SÉPARATEUR ── */
+    .sep       { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .sep-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 16px;
+    }
+
+    /* ── BOUTON SAUVEGARDER ── */
+    .save-btn {
+      background: var(--accent); color: #fff;
+      border: none; border-radius: var(--radius);
+      padding: 12px 32px;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 12px;
+    }
+    .save-btn:hover    { background: var(--accent-h); }
+    .save-btn:disabled { opacity: 0.6; cursor: default; }
+    .save-btn.full     { width: 100%; }
+
+    /* ── NOTIFICATION ── */
+    #notif {
+      position: fixed; top: 68px; right: 24px;
+      padding: 12px 20px; border-radius: 8px;
+      font-size: 13px; font-weight: 500;
+      max-width: 400px; display: none;
+      z-index: 200; box-shadow: 0 4px 16px rgba(0,0,0,.4);
+    }
+    #notif.success { background: var(--success); color: #fff; }
+    #notif.error   { background: var(--error);   color: #fff; }
+
+    #login-error { color: var(--error); font-size: 13px; text-align: center; min-height: 18px; }
+  </style>
 </head>
 <body>
-  <!-- Decap CMS (anciennement Netlify CMS) -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<!-- ══ LOGIN ══ -->
+<div id="login" class="screen">
+  <div class="login-card">
+    <p class="login-logo">DS Plomberie Électricité</p>
+    <div class="login-sep"></div>
+    <h1 class="login-title">Administration</h1>
+
+    <div class="field">
+      <label class="field-label" for="pwd">Mot de passe</label>
+      <input type="password" id="pwd" autocomplete="current-password" placeholder="••••••••"
+             onkeydown="if(event.key==='Enter')login()">
+    </div>
+
+    <button class="save-btn full" id="login-btn" onclick="login()">Se connecter</button>
+    <p id="login-error"></p>
+  </div>
+</div>
+
+<!-- ══ NOTIFICATION ══ -->
+<div id="notif"></div>
+
+<!-- ══ ÉDITEUR ══ -->
+<div id="editor" class="screen">
+  <header class="topbar">
+    <span class="topbar-brand">DS Plomberie — Admin</span>
+    <div class="topbar-sep"></div>
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(event,'hero')">Bannière</button>
+      <button class="tab-btn" onclick="switchTab(event,'expertises')">Expertises</button>
+      <button class="tab-btn" onclick="switchTab(event,'reliability')">Pourquoi nous</button>
+      <button class="tab-btn" onclick="switchTab(event,'contact')">Contact</button>
+    </nav>
+    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+  </header>
+
+  <div class="main">
+
+    <!-- BANNIÈRE -->
+    <div id="tab-hero" class="tab-section active">
+      <h2>Bannière principale</h2>
+
+      <div class="field-row" style="margin-bottom:20px">
+        <div class="field">
+          <label class="field-label">Grand titre — ligne 1</label>
+          <input type="text" id="f-hero-title_line1">
+        </div>
+        <div class="field">
+          <label class="field-label">Grand titre — ligne 2</label>
+          <input type="text" id="f-hero-title_line2">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Sur-titre (haut gauche)</label>
+        <textarea id="f-hero-eyebrow" rows="2"></textarea>
+        <p class="hint">Les retours à la ligne sont affichés tels quels.</p>
+      </div>
+      <div class="field">
+        <label class="field-label">Texte d'introduction (haut droite)</label>
+        <textarea id="f-hero-intro" rows="3"></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">Image de fond</label>
+        <div class="image-wrap">
+          <img id="img-hero-image" class="img-preview" src="" alt="">
+          <div class="upload-zone">
+            <label class="upload-btn">
+              <input type="file" accept="image/*" onchange="handleUpload(this,'hero','image')">
+              Changer l'image
+            </label>
+            <span class="uploading" id="up-hero-image">Téléversement en cours…</span>
+          </div>
+        </div>
+        <input type="hidden" id="f-hero-image">
+      </div>
+      <button class="save-btn" id="btn-save-hero" onclick="save('hero')">Sauvegarder</button>
+    </div>
+
+    <!-- EXPERTISES -->
+    <div id="tab-expertises" class="tab-section">
+      <h2>Section Expertises</h2>
+
+      <div class="field">
+        <label class="field-label">Titre de la section</label>
+        <input type="text" id="f-expertises-section_title">
+      </div>
+      <div class="field">
+        <label class="field-label">Texte sous le titre</label>
+        <textarea id="f-expertises-section_intro" rows="3"></textarea>
+      </div>
+
+      <hr class="sep">
+      <p class="sep-label">Services (4 cartes)</p>
+      <div id="expertises-items"></div>
+
+      <button class="save-btn" id="btn-save-expertises" onclick="save('expertises')">Sauvegarder</button>
+    </div>
+
+    <!-- POURQUOI NOUS -->
+    <div id="tab-reliability" class="tab-section">
+      <h2>Pourquoi nous choisir</h2>
+
+      <div class="field-row" style="margin-bottom:20px">
+        <div class="field">
+          <label class="field-label">Sur-titre</label>
+          <input type="text" id="f-reliability-eyebrow">
+        </div>
+        <div class="field">
+          <label class="field-label">Titre de la section</label>
+          <input type="text" id="f-reliability-title">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Paragraphe d'introduction</label>
+        <textarea id="f-reliability-intro" rows="3"></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">Image de la section</label>
+        <div class="image-wrap">
+          <img id="img-reliability-image" class="img-preview" src="" alt="">
+          <div class="upload-zone">
+            <label class="upload-btn">
+              <input type="file" accept="image/*" onchange="handleUpload(this,'reliability','image')">
+              Changer l'image
+            </label>
+            <span class="uploading" id="up-reliability-image">Téléversement en cours…</span>
+          </div>
+        </div>
+        <input type="hidden" id="f-reliability-image">
+      </div>
+
+      <hr class="sep">
+      <p class="sep-label">Atouts (4 blocs)</p>
+      <div id="reliability-stats"></div>
+
+      <hr class="sep">
+      <p class="sep-label">Encart mis en avant</p>
+      <div class="field-row" style="margin-bottom:20px">
+        <div class="field">
+          <label class="field-label">Titre de l'encart</label>
+          <input type="text" id="f-reliability-overlay_title">
+        </div>
+        <div class="field">
+          <label class="field-label">Sous-titre de l'encart</label>
+          <input type="text" id="f-reliability-overlay_subtitle">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Texte de l'encart</label>
+        <textarea id="f-reliability-overlay_text" rows="2"></textarea>
+      </div>
+
+      <button class="save-btn" id="btn-save-reliability" onclick="save('reliability')">Sauvegarder</button>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="tab-contact" class="tab-section">
+      <h2>Contact &amp; Coordonnées</h2>
+
+      <div class="field">
+        <label class="field-label">Sur-titre</label>
+        <input type="text" id="f-contact-eyebrow">
+      </div>
+      <div class="field">
+        <label class="field-label">Titre de la section</label>
+        <textarea id="f-contact-title" rows="2"></textarea>
+        <p class="hint">Les retours à la ligne sont affichés tels quels.</p>
+      </div>
+      <div class="field">
+        <label class="field-label">Texte d'introduction</label>
+        <textarea id="f-contact-intro" rows="3"></textarea>
+      </div>
+      <hr class="sep">
+      <div class="field">
+        <label class="field-label">Adresse</label>
+        <textarea id="f-contact-address" rows="2"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Téléphone</label>
+          <input type="tel" id="f-contact-phone">
+        </div>
+        <div class="field">
+          <label class="field-label">Email</label>
+          <input type="email" id="f-contact-email">
+        </div>
+      </div>
+      <button class="save-btn" id="btn-save-contact" onclick="save('contact')">Sauvegarder</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── ÉTAT ──
+let SESSION_PWD = null;
+let stored = {};
+
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', async () => {
+  buildDynamicForms();
+  const saved = sessionStorage.getItem('cms_pwd');
+  if (saved) {
+    const ok = await verifyPwd(saved);
+    if (ok) { SESSION_PWD = saved; await loadAll(); showEditor(); return; }
+    sessionStorage.removeItem('cms_pwd');
+  }
+  show('login');
+});
+
+// ── FORMULAIRES DYNAMIQUES ──
+function buildDynamicForms() {
+  const EXPERT_ICONS = [
+    ['water_drop',    "Goutte d'eau (Plomberie)"],
+    ['electric_bolt', 'Éclair (Électricité)'],
+    ['mode_fan',      'Ventilateur (CVC)'],
+    ['build',         'Outil (Dépannage)'],
+    ['plumbing',      'Robinet'],
+    ['thermostat',    'Thermostat'],
+    ['power',         'Prise électrique'],
+    ['heat_pump',     'Pompe à chaleur'],
+  ];
+  const STAT_ICONS = [
+    ['verified',               'Badge vérifié'],
+    ['history',                'Ancienneté / historique'],
+    ['precision_manufacturing','Fabrication de précision'],
+    ['support_agent',          'Support client'],
+    ['workspace_premium',      "Médaille d'excellence"],
+    ['shield',                 'Bouclier / garantie'],
+    ['engineering',            'Ingénierie'],
+    ['handshake',              'Partenariat'],
+    ['savings',                'Économies'],
+    ['eco',                    'Écologie'],
+  ];
+
+  function sel(id, opts) {
+    return `<select id="${id}">${opts.map(([v,l]) => `<option value="${v}">${l}</option>`).join('')}</select>`;
+  }
+
+  let expertHtml = '';
+  for (let i = 0; i < 4; i++) {
+    expertHtml += `<div class="card">
+      <p class="card-label">Service ${i + 1}</p>
+      <div class="field"><label class="field-label">Icône</label>${sel(`f-expertises-items-${i}-icon`, EXPERT_ICONS)}</div>
+      <div class="field"><label class="field-label">Titre</label><input type="text" id="f-expertises-items-${i}-title"></div>
+      <div class="field"><label class="field-label">Description</label><textarea id="f-expertises-items-${i}-description" rows="2"></textarea></div>
+    </div>`;
+  }
+  document.getElementById('expertises-items').innerHTML = expertHtml;
+
+  let statsHtml = '';
+  for (let i = 0; i < 4; i++) {
+    statsHtml += `<div class="card">
+      <p class="card-label">Atout ${i + 1}</p>
+      <div class="field"><label class="field-label">Icône</label>${sel(`f-reliability-stats-${i}-icon`, STAT_ICONS)}</div>
+      <div class="field"><label class="field-label">Titre</label><input type="text" id="f-reliability-stats-${i}-title"></div>
+      <div class="field"><label class="field-label">Description</label><textarea id="f-reliability-stats-${i}-description" rows="2"></textarea></div>
+    </div>`;
+  }
+  document.getElementById('reliability-stats').innerHTML = statsHtml;
+}
+
+// ── AUTH ──
+async function verifyPwd(pwd) {
+  try {
+    const r = await fetch('/.netlify/functions/cms-auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pwd }),
+    });
+    return r.ok;
+  } catch { return false; }
+}
+
+async function login() {
+  const pwd   = document.getElementById('pwd').value.trim();
+  const errEl = document.getElementById('login-error');
+  const btn   = document.getElementById('login-btn');
+  errEl.textContent = '';
+  if (!pwd) { errEl.textContent = 'Veuillez saisir le mot de passe.'; return; }
+  btn.disabled = true; btn.textContent = 'Connexion…';
+  const ok = await verifyPwd(pwd);
+  if (ok) {
+    SESSION_PWD = pwd;
+    sessionStorage.setItem('cms_pwd', pwd);
+    await loadAll();
+    showEditor();
+  } else {
+    errEl.textContent = 'Mot de passe incorrect.';
+    btn.disabled = false; btn.textContent = 'Se connecter';
+  }
+}
+
+function logout() {
+  SESSION_PWD = null;
+  sessionStorage.removeItem('cms_pwd');
+  document.getElementById('pwd').value = '';
+  document.getElementById('login-error').textContent = '';
+  const btn = document.getElementById('login-btn');
+  btn.disabled = false; btn.textContent = 'Se connecter';
+  show('login');
+}
+
+// ── CHARGEMENT ──
+async function loadAll() {
+  for (const s of ['hero', 'expertises', 'reliability', 'contact']) {
+    try {
+      const r = await fetch(`/content/${s}.json?t=${Date.now()}`);
+      if (r.ok) stored[s] = await r.json();
+    } catch {}
+  }
+  fillForms();
+}
+
+function sv(id, v) { const el = document.getElementById(id); if (el && v != null) el.value = v; }
+
+function fillForms() {
+  const h = stored.hero || {};
+  sv('f-hero-title_line1', h.title_line1); sv('f-hero-title_line2', h.title_line2);
+  sv('f-hero-eyebrow', h.eyebrow); sv('f-hero-intro', h.intro);
+  sv('f-hero-image', h.image); setImgPrev('hero', 'image', h.image);
+
+  const e = stored.expertises || {};
+  sv('f-expertises-section_title', e.section_title);
+  sv('f-expertises-section_intro', e.section_intro);
+  (e.items || []).forEach((it, i) => {
+    sv(`f-expertises-items-${i}-icon`, it.icon);
+    sv(`f-expertises-items-${i}-title`, it.title);
+    sv(`f-expertises-items-${i}-description`, it.description);
+  });
+
+  const rl = stored.reliability || {};
+  sv('f-reliability-eyebrow', rl.eyebrow); sv('f-reliability-title', rl.title);
+  sv('f-reliability-intro', rl.intro); sv('f-reliability-image', rl.image);
+  sv('f-reliability-overlay_title', rl.overlay_title);
+  sv('f-reliability-overlay_subtitle', rl.overlay_subtitle);
+  sv('f-reliability-overlay_text', rl.overlay_text);
+  setImgPrev('reliability', 'image', rl.image);
+  (rl.stats || []).forEach((s, i) => {
+    sv(`f-reliability-stats-${i}-icon`, s.icon);
+    sv(`f-reliability-stats-${i}-title`, s.title);
+    sv(`f-reliability-stats-${i}-description`, s.description);
+  });
+
+  const c = stored.contact || {};
+  sv('f-contact-eyebrow', c.eyebrow); sv('f-contact-title', c.title);
+  sv('f-contact-intro', c.intro); sv('f-contact-address', c.address);
+  sv('f-contact-phone', c.phone); sv('f-contact-email', c.email);
+}
+
+function setImgPrev(section, field, url) {
+  if (!url) return;
+  const img = document.getElementById(`img-${section}-${field}`);
+  if (img) img.src = url;
+}
+
+// ── SAUVEGARDE ──
+function fv(id) { return document.getElementById(id)?.value ?? ''; }
+
+function buildPayload(section) {
+  if (section === 'hero') return {
+    title_line1: fv('f-hero-title_line1'), title_line2: fv('f-hero-title_line2'),
+    eyebrow: fv('f-hero-eyebrow'), intro: fv('f-hero-intro'), image: fv('f-hero-image'),
+  };
+  if (section === 'expertises') return {
+    section_title: fv('f-expertises-section_title'),
+    section_intro: fv('f-expertises-section_intro'),
+    items: [0,1,2,3].map(i => ({
+      icon:        fv(`f-expertises-items-${i}-icon`),
+      title:       fv(`f-expertises-items-${i}-title`),
+      description: fv(`f-expertises-items-${i}-description`),
+    })),
+  };
+  if (section === 'reliability') return {
+    eyebrow: fv('f-reliability-eyebrow'), title: fv('f-reliability-title'),
+    intro: fv('f-reliability-intro'), image: fv('f-reliability-image'),
+    stats: [0,1,2,3].map(i => ({
+      icon:        fv(`f-reliability-stats-${i}-icon`),
+      title:       fv(`f-reliability-stats-${i}-title`),
+      description: fv(`f-reliability-stats-${i}-description`),
+    })),
+    overlay_title: fv('f-reliability-overlay_title'),
+    overlay_subtitle: fv('f-reliability-overlay_subtitle'),
+    overlay_text: fv('f-reliability-overlay_text'),
+  };
+  if (section === 'contact') return {
+    eyebrow: fv('f-contact-eyebrow'), title: fv('f-contact-title'),
+    intro: fv('f-contact-intro'), address: fv('f-contact-address'),
+    phone: fv('f-contact-phone'), email: fv('f-contact-email'),
+  };
+}
+
+async function save(section) {
+  const btn = document.getElementById(`btn-save-${section}`);
+  const orig = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sauvegarde…';
+  try {
+    const res = await fetch('/.netlify/functions/cms-save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-cms-password': SESSION_PWD },
+      body: JSON.stringify({ file: section, content: buildPayload(section) }),
+    });
+    if (res.ok) {
+      notify('success', 'Sauvegardé ! Les modifications seront visibles sur le site dans 1 à 2 minutes.');
+    } else {
+      const body = await res.json().catch(() => ({}));
+      notify('error', body.error || 'Erreur lors de la sauvegarde.');
+    }
+  } catch {
+    notify('error', 'Erreur réseau. Vérifiez votre connexion internet.');
+  }
+  btn.disabled = false; btn.textContent = orig;
+}
+
+// ── TÉLÉVERSEMENT IMAGE ──
+async function handleUpload(input, section, field) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 4 * 1024 * 1024) {
+    notify('error', 'Image trop volumineuse (max 4 Mo). Compressez-la avant de l\'envoyer.');
+    input.value = ''; return;
+  }
+  const upEl  = document.getElementById(`up-${section}-${field}`);
+  const imgEl = document.getElementById(`img-${section}-${field}`);
+  const prevSrc = imgEl ? imgEl.src : '';
+  if (upEl) upEl.style.display = 'block';
+
+  const dataUrl = await readAsDataUrl(file);
+  if (imgEl) imgEl.src = dataUrl;
+
+  try {
+    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+    const res = await fetch('/.netlify/functions/cms-upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-cms-password': SESSION_PWD },
+      body: JSON.stringify({ filename, data: dataUrl.split(',')[1] }),
+    });
+    if (res.ok) {
+      const { url } = await res.json();
+      document.getElementById(`f-${section}-${field}`).value = url;
+      notify('success', 'Image téléversée. Cliquez "Sauvegarder" pour l\'appliquer.');
+    } else {
+      if (imgEl) imgEl.src = prevSrc;
+      notify('error', "Erreur lors du téléversement de l'image.");
+    }
+  } catch {
+    if (imgEl) imgEl.src = prevSrc;
+    notify('error', 'Erreur réseau lors du téléversement.');
+  }
+
+  if (upEl) upEl.style.display = 'none';
+  input.value = '';
+}
+
+function readAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = e => resolve(e.target.result);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+// ── UI HELPERS ──
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showEditor() { show('editor'); }
+
+function switchTab(evt, tab) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  evt.currentTarget.classList.add('active');
+}
+
+let notifTimer;
+function notify(type, msg) {
+  const el = document.getElementById('notif');
+  el.className = type; el.textContent = msg; el.style.display = 'block';
+  clearTimeout(notifTimer);
+  notifTimer = setTimeout(() => { el.style.display = 'none'; }, 6000);
+}
+</script>
 </body>
 </html>

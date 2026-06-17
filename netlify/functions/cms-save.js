@@ -1,23 +1,34 @@
-// Écrit un fichier content/*.json dans le dépôt GitHub via l'API.
-// Authentification : mot de passe dans l'en-tête x-cms-password.
+const crypto = require('crypto');
+
+// Seuls ces fichiers peuvent être écrits — bloque toute tentative de path traversal.
+const ALLOWED_FILES = new Set(['hero', 'expertises', 'reliability', 'contact']);
+
+function safeEquals(a, b) {
+  try { return crypto.timingSafeEqual(Buffer.from(a, 'utf8'), Buffer.from(b, 'utf8')); }
+  catch { return false; }
+}
+
 exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
+  if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method Not Allowed' };
 
   const password = event.headers['x-cms-password'];
-  if (!password || password !== process.env.CMS_PASSWORD) {
+  const correct  = process.env.CMS_PASSWORD;
+  if (!correct || !password || !safeEquals(password, correct)) {
+    await new Promise(r => setTimeout(r, 500));
     return { statusCode: 401, body: JSON.stringify({ error: 'Non autorisé' }) };
   }
 
   const pat = process.env.GITHUB_PAT;
-  if (!pat) {
-    return { statusCode: 500, body: JSON.stringify({ error: 'GITHUB_PAT non configuré' }) };
-  }
+  if (!pat) return { statusCode: 500, body: JSON.stringify({ error: 'GITHUB_PAT non configuré' }) };
 
   const { file, content } = JSON.parse(event.body || '{}');
-  if (!file || !content) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Paramètres manquants' }) };
+
+  // Allowlist strict — empêche d'écrire hors de content/
+  if (!file || !ALLOWED_FILES.has(file)) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Fichier non autorisé' }) };
+  }
+  if (!content || typeof content !== 'object') {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Contenu invalide' }) };
   }
 
   const repo     = 'sousouilleln/ds-plomberie-l-c';
@@ -33,10 +44,7 @@ exports.handler = async (event) => {
   // Récupère le SHA actuel (requis par GitHub pour mettre à jour un fichier existant).
   let sha;
   const getRes = await fetch(apiUrl, { headers });
-  if (getRes.ok) {
-    const current = await getRes.json();
-    sha = current.sha;
-  }
+  if (getRes.ok) sha = (await getRes.json()).sha;
 
   const body = {
     message: `CMS: mise à jour content/${file}.json`,
@@ -45,7 +53,6 @@ exports.handler = async (event) => {
   if (sha) body.sha = sha;
 
   const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
-
   if (!putRes.ok) {
     const err = await putRes.json().catch(() => ({}));
     return { statusCode: 500, body: JSON.stringify({ error: err.message || 'Erreur GitHub API' }) };

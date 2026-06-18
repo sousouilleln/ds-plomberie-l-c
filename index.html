@@ -294,23 +294,18 @@
         </div>
       </div>
 
-      <!-- Netlify Form -->
+      <!-- Formulaire FormSubmit.co — gratuit, sans backend Netlify -->
       <div class="bg-surface p-8 rounded border border-outline-variant/20">
-        <!-- Netlify Forms: name + data-netlify, honeypot anti-spam, redirect après envoi -->
         <form
-          name="contact"
           method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          action="/merci.html"
+          action="https://formsubmit.co/sousouillelebig@gmail.com"
           class="space-y-6"
         >
-          <!-- Champ caché requis par Netlify pour associer la soumission au formulaire -->
-          <input type="hidden" name="form-name" value="contact">
-          <!-- Honeypot anti-spam (caché aux humains) -->
-          <p class="hidden">
-            <label>Ne remplissez pas ceci : <input name="bot-field"></label>
-          </p>
+          <input type="hidden" name="_next" value="https://dsplomberieelec.netlify.app/merci.html">
+          <input type="hidden" name="_subject" value="Nouveau message — DS Plomberie Électricité">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
 
           <div class="relative">
             <input class="peer w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-md py-3 focus:ring-0 focus:border-primary transition-colors placeholder-transparent" id="name" name="name" placeholder="Nom complet" required type="text" autocomplete="name">
